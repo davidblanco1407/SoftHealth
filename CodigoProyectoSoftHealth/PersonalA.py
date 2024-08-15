@@ -49,3 +49,15 @@ class PersonalHospital(Persona):
                 nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo = l.strip().split(', ')
                 personal.append(cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo))
         return personal
+    
+    def iniciarSesion(cls, file='files/personal_hospital.txt'):
+        correo = input("Ingrese su correo electrónico: ").lower()
+        contrasena = input("Digite su contraseña: ")
+        personal = cls.obtenerPersonal(file)
+        for persona in personal:
+            if persona.correo == correo and persona.contrasena == contrasena:
+                print(persona.nombre1, persona.apellido1,' esta iniciando sesion.')
+                return True
+            else:
+                print("Correo electrónico y/o contraseña incorrectos")
+                return False

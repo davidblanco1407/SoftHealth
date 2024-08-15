@@ -47,3 +47,24 @@ class Paciente(Persona):
                 nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena = l.strip().split(', ')
                 pacientes.append(cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena))
         return pacientes
+
+    def iniciarSesion(cls, file='files/pacientes.txt'):
+        correo = input("Ingrese su correo electrónico: ").lower()
+        contrasena = input("Digite su contraseña: ")
+        pacientes = cls.obtenerPacientes(file)
+        for paciente in pacientes:
+            if paciente.correo == correo and paciente.contrasena == contrasena:
+                print(paciente.nombre1, paciente.apellido1,' esta iniciando sesion.')
+                return True
+            else:
+                print("Correo electrónico y/o contraseña incorrectos")
+                return False
+    
+    def busquedaMedico(cls, nombre, area, file='files/personal_hospital.txt'):
+        personal = []
+        with open(file, 'r', encoding='utf-8') as f:
+            lineas = f.readlines()
+            for l in lineas:
+                nombre, area = l.strip().split(', ')
+                personal.append(cls(nombre, area))
+        return personal

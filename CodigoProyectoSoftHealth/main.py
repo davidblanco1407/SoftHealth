@@ -2,7 +2,7 @@ from AdministradorA import Administrador
 from EntidadA import Entidad
 from PersonalA import Personal
 from pacienteA import Paciente
-from menu import menu  
+from menu import menu_paciente, menu_personalMedico, menuAdministrador  
 objAdministrador=Administrador('','','','','','','','','','','')
 objEntidad=Entidad('','','','','','','','','','','')
 objPersonal=Personal('','','','','','','','','','','')
@@ -74,7 +74,7 @@ def iniciarSesion():
     print('Inicie sesión en su cuenta.','☲'*20)
     if tipoPersona()==1:
         if objPaciente.iniciarSesion() == True:
-            menu()
+            menu_paciente()
         else: 
             q=input('\t1. Reintentar.\n\t2. Inicio.\nOpcion: ')
             if q=='1':
@@ -83,7 +83,7 @@ def iniciarSesion():
                 base()
     elif tipoPersona()==2:
         if objAdministrador.iniciarSesion() == True:
-            menu()
+            menuAdministrador()
         else: 
             q=input('\t1. Reintentar.\n\t2. Inicio.\nOpcion: ')
             if q=='1':
@@ -92,7 +92,7 @@ def iniciarSesion():
                 base()    
     else:
         if objPersonal.iniciarSesion() == True:
-            menu()
+            menu_personalMedico()
         else: 
             q=input('\t1. Reintentar.\n\t2. Inicio.\nOpcion: ')
             if q=='1':
