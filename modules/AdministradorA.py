@@ -1,9 +1,8 @@
 from simple_colors import *
-from persona import *
-from db import *
+from .persona import *
+from .db import *
 
 class Administrador(Persona):
-    #administradores = []
     def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena):
         super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
 
@@ -40,7 +39,6 @@ class Administrador(Persona):
             print(red('-'*80))
             contrasena = input(('    >>> Inténtelo de nuevo: '))
         admin = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
-        #cls.administradores.append(admin)
         doc_admin = {
             "nombre1": nombre1,
             "nombre2": nombre2,
