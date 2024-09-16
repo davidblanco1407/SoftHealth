@@ -51,7 +51,7 @@ def tipoPersona():
     opcion=0
     while opcion<1 or opcion>3:
         print(black('¿Quien intenta entrar en SoftHealth?\n\t1. Usuario/Paciente.\n\t2. Administrador.\n\t3. Personal Medico'))
-        opcion=2
+        opcion=int(input(('    >>> Seleccione una opción: ')))
     return opcion
 
 def seParteDeNosotros():
@@ -87,7 +87,8 @@ def seParteDeNosotros():
 def iniciarSesion():
     print('-'*80)
     print(green(f'{'-'*25} Iniciar sesión en su cuenta {'-'*26}','bold'))
-    if tipoPersona()==1:
+    x = tipoPersona()
+    if x == 1:
         if objPaciente.iniciarSesion() == True:
             menu_paciente()
         else: 
@@ -100,7 +101,7 @@ def iniciarSesion():
                 iniciarSesion()
             else:
                 base()
-    elif tipoPersona()==2:
+    elif x == 2:
         if objAdministrador.iniciarSesion() == True:
             menuAdministrador()
         else:
