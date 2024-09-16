@@ -1,13 +1,14 @@
 from simple_colors import *
 from persona import *
+from db import *
 
 class Administrador(Persona):
-    administradores = []
+    #administradores = []
     def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena):
         super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
 
     @classmethod
-    def registrarAdmin(cls, file='files/administradores.txt'):
+    def registrarAdmin(cls):
         print('-'*80)
         print(green(f'{'-'*25} Registro Administrador {'-'*25}','bold'))
         print('-'*80)
@@ -39,31 +40,46 @@ class Administrador(Persona):
             print(red('-'*80))
             contrasena = input(('    >>> Inténtelo de nuevo: '))
         admin = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
-        cls.administradores.append(admin)
-        with open(file, 'a', encoding='utf-8') as f:
-            cadena = f'{nombre1}, {nombre2}, {apellido1}, {apellido2}, {tipoDocumento}, {documento}, {fechaNacimiento}, {direccion}, {celular}, {correo}, {contrasena}'
-            f.write(cadena + '\n')
+        #cls.administradores.append(admin)
+        doc_admin = {
+            "nombre1": nombre1,
+            "nombre2": nombre2,
+            "apellido1": apellido1,
+            "apellido2": apellido2,
+            "tipoDocumento": tipoDocumento,
+            "documento": documento,
+            "fechaNacimiento": fechaNacimiento,
+            "direccion": direccion,
+            "celular": celular,
+            "correo": correo,
+            "contrasena": contrasena
+        }
+        db_manager.insertar("Administradores", doc_admin)
         return admin
 
     @classmethod
-    def obtenerAdmin(cls, file='files/administradores.txt'):
+    def obtenerAdmin(cls):
         administradores = []
-        with open(file, 'r', encoding='utf-8') as f:
-            lineas = f.readlines()
-            for l in lineas:
-                nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena = l.strip().split(', ')
-                administradores.append(cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena))
+        resultados = db_manager.encontrar("administradores", {})
+        for doc in resultados:
+            admin = cls(
+                doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
+                doc["tipoDocumento"], doc["documento"], doc["fechaNacimiento"],
+                doc["direccion"], doc["celular"], doc["correo"], doc["contrasena"]
+            )
+            administradores.append(admin)
         return administradores
-    
-    def iniciarSesion(cls, file='files/administradores.txt'):
+
+    @classmethod
+    def iniciarSesion(cls):
         print('-'*80)
         correo = input('    >>> Ingrese su correo electrónico: ').lower()
         contrasena = input('    >>> Digite su contraseña: ')
-        administradores = cls.obtenerAdmin(file)
+        administradores = cls.obtenerAdmin()
         for admin in administradores:
             if admin.getCorreo() == correo and admin.getContrasena() == contrasena:
                 print(yellow('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
-            else:
-                return False
+        print(red('Correo o contraseña incorrectos.'))
+        return False
