@@ -1,9 +1,9 @@
 from simple_colors import *
-from AdministradorA import Administrador
-from EntidadA import Entidad
-from PersonalA import PersonalHospital
-from pacienteA import Paciente
-from menu import menu_paciente, menu_personalMedico, menuAdministrador
+from modules.AdministradorA import Administrador
+from modules.EntidadA import Entidad
+from modules.PersonalA import PersonalHospital
+from modules.pacienteA import Paciente
+from modules.menu import menu_paciente, menu_personalMedico, menuAdministrador
 
 valAdmin = False
 valEntidad = False
