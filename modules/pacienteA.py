@@ -2,14 +2,14 @@ from simple_colors import *
 from .persona import *
 from .db import *
 
-class Administrador(Persona):
+class Paciente(Persona):
     def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena):
         super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
 
     @classmethod
-    def registrarAdmin(cls):
+    def registrarPaciente(cls):
         print('-'*80)
-        print(green(f'{'-'*25} Registro Administrador {'-'*25}','bold'))
+        print(green(f'{'-'*25} Registro Paciente {'-'*25}','bold'))
         print('-'*80)
         nombre1 = input('    >>> Ingrese su primer nombre: ')
         nombre2 = input('    >>> Ingrese su segundo nombre: ')
@@ -38,8 +38,8 @@ class Administrador(Persona):
             print(red(f'{'-'*17} La contraseña debe tener mínimo 8 caracteres {'-'*17}'))
             print(red('-'*80))
             contrasena = input(('    >>> Inténtelo de nuevo: '))
-        admin = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
-        doc_admin = {
+        paciente = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
+        doc_paciente = {
             "nombre1": nombre1,
             "nombre2": nombre2,
             "apellido1": apellido1,
@@ -52,31 +52,31 @@ class Administrador(Persona):
             "correo": correo,
             "contrasena": contrasena
         }
-        db_manager.insertar("Administradores", doc_admin)
-        return admin
+        db_manager.insertar("Pacientes", doc_paciente)
+        return paciente
 
     @classmethod
-    def obtenerAdmin(cls):
-        administradores = []
-        resultados = db_manager.encontrar("Administradores", {}, True)
+    def obtenerPaciente(cls):
+        pacientes = []
+        resultados = db_manager.encontrar("Pacientes", {}, True)
         for doc in resultados:
-            admin = cls(
+            paciente = cls(
                 doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
                 doc["tipoDocumento"], doc["documento"], doc["fechaNacimiento"],
                 doc["direccion"], doc["celular"], doc["correo"], doc["contrasena"]
             )
-            administradores.append(admin)
-        return administradores
+            pacientes.append(paciente)
+        return pacientes
 
     @classmethod
     def iniciarSesion(cls):
         print('-'*80)
         correo = input('    >>> Ingrese su correo electrónico: ').lower()
         contrasena = input('    >>> Digite su contraseña: ')
-        administradores = cls.obtenerAdmin()
-        for admin in administradores:
-            if admin.getCorreo() == correo and admin.getContrasena() == contrasena:
-                print(yellow('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
+        pacientes = cls.obtenerPaciente()
+        for paciente in pacientes:
+            if paciente.getCorreo() == correo and paciente.getContrasena() == contrasena:
+                print(yellow('\n',paciente.getNombre1(), paciente.getApellido1(),' esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))

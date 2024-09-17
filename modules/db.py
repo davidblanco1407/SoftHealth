@@ -12,9 +12,11 @@ class DBManager:
         coleccion = self.db[coleccion]
         coleccion.insertOne(doc)
 
-    def encontrar(self, coleccion, query):
+    def encontrar(self, coleccion, query, many=False):
         coleccion = self.db[coleccion]
-        return coleccion.findOne(query)
+        if many == False:
+            return coleccion.findOne(query)
+        return coleccion.find(query)
 
     def actualizar(self, coleccion, query, nuevo_valor):
         coleccion = self.db[coleccion]
