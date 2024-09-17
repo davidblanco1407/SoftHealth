@@ -10,20 +10,20 @@ class DBManager:
 #Métodos crud
     def insertar(self, coleccion, doc):
         coleccion = self.db[coleccion]
-        coleccion.insertOne(doc)
+        coleccion.insert_one(doc)
 
     def encontrar(self, coleccion, query, many=False):
         coleccion = self.db[coleccion]
         if many == False:
-            return coleccion.findOne(query)
+            return coleccion.find_one(query)
         return coleccion.find(query)
 
     def actualizar(self, coleccion, query, nuevo_valor):
         coleccion = self.db[coleccion]
-        coleccion.updateOne(query, {"$set": nuevo_valor})
+        coleccion.update_one(query, {"$set": nuevo_valor})
 
     def eliminar(self, coleccion, query):
         coleccion = self.db[coleccion]
-        coleccion.deleteOne(query)
+        coleccion.delete_one(query)
 
 db_manager = DBManager()

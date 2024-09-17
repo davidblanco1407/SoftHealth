@@ -1,5 +1,5 @@
 from simple_colors import *
-from persona import *
+from .persona import *
 
 class PersonalHospital(Persona):
     personal = []

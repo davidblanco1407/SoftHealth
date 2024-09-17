@@ -1,5 +1,5 @@
 from simple_colors import *
-from pacienteA import Paciente
+from .pacienteA import Paciente
 
 def menu_paciente():
     z = True
