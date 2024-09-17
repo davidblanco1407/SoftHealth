@@ -1,17 +1,16 @@
 from simple_colors import *
 from .persona import *
+from .db import *
 
 class PersonalHospital(Persona):
-    personal = []
-
     def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo):
         super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
-        self.cargo = cargo
+        self.__cargo = cargo
 
     @classmethod
-    def registrarPersonal(cls, file='files/personal_hospital.txt'):
+    def registrarPersonal(cls):
         print('-'*80)
-        print(green(f'{'-'*30} Registro Personal {'-'*31}','bold'))
+        print(green(f'{'-'*25} Registro Personal {'-'*25}','bold'))
         print('-'*80)
         nombre1 = input('    >>> Ingrese su primer nombre: ')
         nombre2 = input('    >>> Ingrese su segundo nombre: ')
@@ -30,7 +29,7 @@ class PersonalHospital(Persona):
         else:
             tipoDocumento = 'PA'
         documento = input('\n    >>> Ingrese su número de documento: ')
-        fechaNacimiento = input('    >>> Ingrese su fecha de nacimiento, en formato DD/MM/AAAA: ')
+        fechaNacimiento = input('Ingrese su fecha de nacimiento, en formato DD/MM/AAAA: ')
         direccion = input('    >>> Digite su dirección de residencia: ')
         celular = input('    >>> Ingrese su número de celular, sin signos de puntuación o espacios: ')
         correo = input('    >>> Ingrese su correo electrónico: ').lower()
@@ -41,31 +40,47 @@ class PersonalHospital(Persona):
             print(red('-'*80))
             contrasena = input(('    >>> Inténtelo de nuevo: '))
         cargo = input('    >>> Ingrese su cargo (Ej. Médico, Enfermero, etc.): ')
-        personal = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo)
-        cls.personal.append(personal)
-        with open(file, 'a', encoding='utf-8') as f:
-            cadena = f'{nombre1}, {nombre2}, {apellido1}, {apellido2}, {tipoDocumento}, {documento}, {fechaNacimiento}, {direccion}, {celular}, {correo}, {contrasena}, {cargo}'
-            f.write(cadena + '\n')
+        personal = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
+        doc_personal = {
+            "nombre1": nombre1,
+            "nombre2": nombre2,
+            "apellido1": apellido1,
+            "apellido2": apellido2,
+            "tipoDocumento": tipoDocumento,
+            "documento": documento,
+            "fechaNacimiento": fechaNacimiento,
+            "direccion": direccion,
+            "celular": celular,
+            "correo": correo,
+            "contrasena": contrasena,
+            "cargo": cargo
+        }
+        db_manager.insertar("Personal", doc_personal)
         return personal
 
     @classmethod
-    def obtenerPersonal(cls, file='files/personal_hospital.txt'):
-        personal = []
-        with open(file, 'r', encoding='utf-8') as f:
-            lineas = f.readlines()
-            for l in lineas:
-                nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo = l.strip().split(', ')
-                personal.append(cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo))
-        return personal
-    
-    def iniciarSesion(cls, file='files/personal_hospital.txt'):
-        correo = input('Ingrese su correo electrónico: ').lower()
-        contrasena = input('Digite su contraseña: ')
-        personal = cls.obtenerPersonal(file)
-        for persona in personal:
+    def obtenerPersonal(cls):
+        personals = []
+        resultados = db_manager.encontrar("Personal", {}, True)
+        for doc in resultados:
+            personal = cls(
+                doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
+                doc["tipoDocumento"], doc["documento"], doc["fechaNacimiento"],
+                doc["direccion"], doc["celular"], doc["correo"], doc["contrasena"], doc["cargo"]
+            )
+            personals.append(personal)
+        return personals
+
+    @classmethod
+    def iniciarSesion(cls):
+        print('-'*80)
+        correo = input('    >>> Ingrese su correo electrónico: ').lower()
+        contrasena = input('    >>> Digite su contraseña: ')
+        personals = cls.obtenerPersonal()
+        for persona in personals:
             if persona.getCorreo() == correo and persona.getContrasena() == contrasena:
-                print(persona.nombre1, persona.apellido1,' esta iniciando sesion.')
+                print(yellow('\n',persona.getNombre1(), persona.getApellido1(),' esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
-            else:
-                return False
+        print(red('Correo o contraseña incorrectos.'))
+        return False
