@@ -5,10 +5,10 @@ def menu_paciente():
     z = True
     while z == True:
         # Títulos
-        print(green(f'\n{'-'*80}\n{'-'*32} Menú principal {'-'*32}\n{'-'*80}','bold'))
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
         print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
         # Menú de Opciones
-        print(black('Inicio'),'\n1. Info. personal médico\n2. Agendar cita\n3. Tu historia clínica\n4. Cerrar sesión')
+        print(black('Inicio','bold'),'\n1. Info. personal médico\n2. Agendar cita\n3. Tu historia clínica\n4. Cerrar sesión')
         x = int(input('    >>> Para continuar, seleccione una opción: '))
         while x < 1 or x > 4:
             print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
@@ -61,7 +61,7 @@ def menu_paciente():
 
             # Cerrar Sesión
             case 4:
-                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n'))
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
                 z = False
 
 # Menú 'Personal Médico'
@@ -69,7 +69,7 @@ def menu_personalMedico():
     z = True
     while z == True:
         # Títulos
-        print(green(f'\n{'-'*80}\n{'-'*32} Menú principal {'-'*32}\n{'-'*80}','bold'))
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
         print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
         # Menú de Opciones
         print(black('Inicio'),'\n1. Info. pacientes\n2. Agendamiento de citas\n3. Historias clínicas\n4. Cerrar sesión')
@@ -130,7 +130,7 @@ def menu_personalMedico():
                 
             # Cerrar Sesión
             case 4:
-                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n'))
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
                 z = False
 
 # Menú 'Administrador'
@@ -138,10 +138,10 @@ def menu_administrador():
     z = True
     while z == True:
         # Títulos
-        print(green(f'\n{'-'*80}\n{'-'*32} Menú principal {'-'*32}\n{'-'*80}','bold'))
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
         print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
         # Menú de Opciones
-        print(black('Inicio'),'\n1. Info. personal\n2. Agendamiento de citas\n3. Historias clínicas\n5. Cerrar sesión')
+        print(black('Inicio','bold'),'\n1. Info. personal\n2. Agendamiento de citas\n3. Historias clínicas\n4. Cerrar sesión')
         x = int(input('    >>> Para continuar, seleccione una opción: '))
         while x < 1 or x > 5:
             print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
@@ -235,5 +235,5 @@ def menu_administrador():
                 
             # Cerrar Sesión
             case 4:
-                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n'))
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
                 z = False
