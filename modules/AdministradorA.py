@@ -81,4 +81,4 @@ class Administrador(Persona):
                 print(cyan('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
-        return True
+        return False
