@@ -1,5 +1,6 @@
 from simple_colors import *
 from .pacienteA import Paciente
+objPaciente=Paciente('','','','','','','','','','','')
 
 def menu_paciente():
     z = True
@@ -51,7 +52,7 @@ def menu_paciente():
                 i = int(input('    >>> Para continuar, seleccione una opción: '))
                 match i:
                     case 1:
-                        fecha = input('Ingrese la fecha del historial clínico: ')
+                        objPaciente.busquedaHC()
                     case 2:
                         edicion = input('Ingrese la información que desea solicitar un cambio: ')
 

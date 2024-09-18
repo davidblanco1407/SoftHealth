@@ -60,7 +60,7 @@ class Paciente(Persona):
         pacientes = []
         resultados = db_manager.encontrar("Pacientes", {}, True)
         for doc in resultados:
-            paciente = cls(
+            paciente = Persona(
                 doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
                 doc["tipoDocumento"], doc["documento"], doc["fechaNacimiento"],
                 doc["direccion"], doc["celular"], doc["correo"], doc["contrasena"]
@@ -81,3 +81,17 @@ class Paciente(Persona):
                 return True
         print(red('Correo o contraseña incorrectos.'))
         return False
+    
+    def busquedaHC(cls):
+        print('-'*80)
+        print(green(f'{'-'*25} Busqueda Historia Clinica {'-'*25}','bold'))
+        print('-'*80)
+        documento = input('    >>> Ingrese su número de documento: ')
+        pacientes = cls.obtenerPaciente()
+        for paciente in pacientes:
+            if paciente.getDocumento() == documento:
+                fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
+                historialclinico = DBManager.encontrar(cls, 'HistorialClinico', fecha, False)
+                if fecha == historialclinico:
+                    print(f'\nHistoria Clinica del paciente {paciente.getNombre1()} {paciente.getApellido1()}')
+

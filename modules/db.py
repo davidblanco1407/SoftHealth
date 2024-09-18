@@ -3,7 +3,7 @@ import pymongo
 
 #Creación de la clase para la conexión a mongodb
 class DBManager:
-    def __init__(self, uri="mongodb://localhost:27017/", db_name="softhealth"):
+    def __init__(self, uri="mongodb://localhost:27017/", db_name="SofhtHealthDB"):
         self.cliente = pymongo.MongoClient(uri)
         self.db = self.cliente[db_name]
 
@@ -14,6 +14,7 @@ class DBManager:
 
     def encontrar(self, coleccion, query, many=False):
         coleccion = self.db[coleccion]
+        print(f'{coleccion}')
         if many == False:
             return coleccion.find_one(query)
         return coleccion.find(query)
