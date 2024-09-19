@@ -81,3 +81,22 @@ class Administrador(Persona):
                 return True
         print(red('Correo o contraseña incorrectos.'))
         return False
+
+    def busquedaHC(cls):
+        print('-'*80)
+        print(green(f'{'-'*25} Busqueda Historia Clinica {'-'*25}','bold'))
+        print('-'*80)
+        documento = input('    >>> Ingrese su número de documento: ')
+        pacientes = cls.obtenerPaciente()
+        for paciente in pacientes:
+            if paciente.getDocumento() == documento:
+                fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
+                historialClinico = DBManager.encontrar(cls, 'HistorialClinico', fecha, False)
+                if fecha == historialclinico['fechaConsulta']:
+                    print(f'\nHistoria Clinica del paciente {paciente.getNombre1()} {paciente.getApellido1()}')
+                    print(f'\tDocumento Paciente: {historialClinico['Documento']}')
+                    print(f'\tDatos de la consulta: {historialClinico['datosConsulta']}')
+                    print(f'\tDatos del procedimiento: {historialClinico['datosProcedimiento']}')
+                    print(f'\tHospitalizacion: {historialClinico['Hospitalizacion']}')
+                    print(f'\tOtros Servicios: {historialClinico['OtrosServicios']}')
+                    print(f'\tPrescripcion: {historialClinico['Prescripcion']}')
