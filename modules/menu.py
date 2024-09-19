@@ -1,6 +1,10 @@
 from simple_colors import *
 from .pacienteA import Paciente
+from .PersonalA import Personal
+from .AdministradorA import Administrador
+objPersonal=Personal('','','','','','','','','','','','')
 objPaciente=Paciente('','','','','','','','','','','')
+objAdministrador=Administrador('','','','','','','','','','','')
 
 def menu_paciente():
     z = True
@@ -54,7 +58,7 @@ def menu_paciente():
                     case 1:
                         objPaciente.busquedaHC()
                     case 2:
-                        edicion = input('Ingrese la información que desea solicitar un cambio: ')
+                        edicion = input('Ingrese la información que desea solicitar un cambio: ')#opcion que envia a el personal medico solicitudes de cambio
 
             case 4:
                 print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}'))
@@ -111,18 +115,17 @@ def menu_personalMedico():
             print(green(f'{'-'*28} Ver Historia Clinica Del Paciente {'-'*29}','bold'))
             print('-'*80)
             # Opciones
-            ver = input("Seleccione que historia clinica quiere ver: ")
-            print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
+            #ver = input("Seleccione que historia clinica quiere ver: ")
+            #print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
             # Títulos
-            print('-'*80)
-            
+            #print('-'*80)
+            objPersonal.busquedaHC()
             
         case 4:
             print(green(f'{'-'*28} Editar Historia Clinica Del Paciente {'-'*29}','bold'))
             print('-'*80)
             # Opciones
-            editar = input("Edite La Historia Clinica Del Paciente: ")
-            print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
+            objPersonal.cambioHC()
             
             
             
@@ -193,11 +196,14 @@ def menuAdministrador():
         case 4:
             # Títulos
             print('-'*80)
-            print(green(f'{'-'*28} Consultar Historia Clinica Del Paciente  {'-'*29}','bold'))
+            print(green(f'{'-'*28} Ver Historia Clinica Del Paciente {'-'*29}','bold'))
             print('-'*80)
             # Opciones
-            consultar_historia = input("consulte la historia clinica del paciente : ")
-            print(green(f'{'-'*80}\n{'-'*22} saliste de consultar historia clinica del paciente {'-'*22}\n{'-'*80}'))
+            #ver = input("Seleccione que historia clinica quiere ver: ")
+            #print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
+            # Títulos
+            #print('-'*80)
+            objAdministrador.busquedaHC()
             
         # editar. 'historia clinica paciente'
         case 5:
@@ -206,8 +212,8 @@ def menuAdministrador():
             print(green(f'{'-'*28} Editar Historia Clinica Del Paciente  {'-'*29}','bold'))
             print('-'*80)
             # Opciones
-            editar_historia = input("edite la historia clinica del paciente : ")
-            print(green(f'{'-'*80}\n{'-'*22} saliste de editar historia clinica del paciente {'-'*22}\n{'-'*80}'))
+            
+            objPersonal.cambioHC()
             
         # actualizar. 'Actualizar Historia clinica paciente'
         case 6:
