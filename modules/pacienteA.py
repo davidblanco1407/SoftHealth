@@ -91,7 +91,13 @@ class Paciente(Persona):
         for paciente in pacientes:
             if paciente.getDocumento() == documento:
                 fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
-                historialclinico = DBManager.encontrar(cls, 'HistorialClinico', fecha, False)
-                if fecha == historialclinico:
+                historialClinico = DBManager.encontrar(cls, 'HistorialClinico', fecha, False)
+                if fecha == historialclinico['fechaConsulta']:
                     print(f'\nHistoria Clinica del paciente {paciente.getNombre1()} {paciente.getApellido1()}')
+                    print(f'\tDocumento Paciente: {historialClinico['Documento']}')
+                    print(f'\tDatos de la consulta: {historialClinico['datosConsulta']}')
+                    print(f'\tDatos del procedimiento: {historialClinico['datosProcedimiento']}')
+                    print(f'\tHospitalizacion: {historialClinico['Hospitalizacion']}')
+                    print(f'\tOtros Servicios: {historialClinico['OtrosServicios']}')
+                    print(f'\tPrescripcion: {historialClinico['Prescripcion']}')
 
