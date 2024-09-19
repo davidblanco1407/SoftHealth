@@ -100,3 +100,15 @@ class Administrador(Persona):
                     print(f'\tHospitalizacion: {historialClinico['Hospitalizacion']}')
                     print(f'\tOtros Servicios: {historialClinico['OtrosServicios']}')
                     print(f'\tPrescripcion: {historialClinico['Prescripcion']}')
+    def cambioHC(cls):
+        print('-'*80)
+        print(green(f'{'-'*25} Busqueda Historia Clinica {'-'*25}','bold'))
+        print('-'*80)
+        documento = input('    >>> Ingrese el número de documento: ')
+        pacientes = cls.obtenerPaciente()
+        for paciente in pacientes:
+            if paciente.getDocumento() == documento:
+                fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
+                cambio = input('    >>>Ingrese el cambio: ')
+                DBManager.actualiazar('HistorialClinico', fecha, cambio)
+                print('Cambios realizados')
