@@ -76,7 +76,7 @@ class Paciente(Persona):
         pacientes = cls.obtenerPaciente()
         for paciente in pacientes:
             if paciente.getCorreo() == correo and paciente.getContrasena() == contrasena:
-                print(yellow('\n',paciente.getNombre1(), paciente.getApellido1(),' esta iniciando sesión...'))
+                print(yellow(f'\n{paciente.getNombre1()}, {paciente.getApellido1()}, esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))

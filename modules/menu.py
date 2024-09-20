@@ -29,7 +29,9 @@ def menu_paciente():
                 print(black('    Para continuar llene los datos del médico','italic'))
                 name = input('\nNombre: ')
                 area = input('Área: ')
-                Paciente.busquedaMedico(name, area)
+                print(red("Lo sentimos, esta función no está disponible por el momento."))
+                break
+                #Paciente.busquedaMedico(name, area)
             
             case 2:
                 # Títulos
