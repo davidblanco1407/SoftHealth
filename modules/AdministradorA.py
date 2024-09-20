@@ -76,7 +76,7 @@ class Administrador(Persona):
         administradores = cls.obtenerAdmin()
         for admin in administradores:
             if admin.getCorreo() == correo and admin.getContrasena() == contrasena:
-                print(yellow('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
+                print(yellow(f'\n{admin.getNombre1()}, {admin.getApellido1()}, esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))
@@ -110,5 +110,5 @@ class Administrador(Persona):
             if paciente.getDocumento() == documento:
                 fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
                 cambio = input('    >>>Ingrese el cambio: ')
-                DBManager.actualiazar('HistorialClinico', fecha, cambio)
+                DBManager.actualizar('HistorialClinico', fecha, cambio)
                 print('Cambios realizados')

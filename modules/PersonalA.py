@@ -79,7 +79,7 @@ class PersonalHospital(Persona):
         personals = cls.obtenerPersonal()
         for persona in personals:
             if persona.getCorreo() == correo and persona.getContrasena() == contrasena:
-                print(yellow('\n',persona.getNombre1(), persona.getApellido1(),' esta iniciando sesión...'))
+                print(yellow(f'\n{persona.getNombre1()}, {persona.getApellido1()}, esta iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))
@@ -113,5 +113,5 @@ class PersonalHospital(Persona):
             if paciente.getDocumento() == documento:
                 fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
                 cambio = input('    >>>Ingrese el cambio: ')
-                DBManager.actualiazar('HistorialClinico', fecha, cambio)
+                DBManager.actualizar('HistorialClinico', fecha, cambio)
                 print('Cambios realizados')
