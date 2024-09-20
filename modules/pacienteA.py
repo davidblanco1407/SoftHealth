@@ -9,16 +9,18 @@ class Paciente(Persona):
     @classmethod
     def registrarPaciente(cls):
         print('-'*80)
-        print(green(f'{'-'*25} Registro Paciente {'-'*25}','bold'))
+        print(green(f'{'-'*30} Registro Paciente {'-'*31}','bold'))
         print('-'*80)
+        print(black('Para continuar ingrese los datos requeridos...','italic'))
         nombre1 = input('    >>> Ingrese su primer nombre: ')
         nombre2 = input('    >>> Ingrese su segundo nombre: ')
         apellido1 = input('    >>> Ingrese su primer apellido: ')
         apellido2 = input('    >>> Ingrese su segundo apellido: ')
-        print(black('Tipo de documento:\n1. Cédula de Ciudadanía(Cc.)\n2. Tarjeta de Identidad(Ti.)\n3. Cédula de Extranjería(Ce.)\n4. Pasaporte'))
+        print(black('Tipo de documento:\n1. Cédula de Ciudadanía(CC)\n2. Tarjeta de Identidad(TI)\n3. Cédula de Extranjería(CE)\n4. Pasaporte'))
         td = int(input('    >>> Seleccione una opción: '))
         while td < 1 or td > 4:
-            td = int(input('Digite un tipo de documento válido'))
+            print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+            td = int(input('    >>> Seleccione una opción: '))
         if td == 1:
             tipoDocumento = 'CC'
         elif td == 2:
@@ -27,17 +29,15 @@ class Paciente(Persona):
             tipoDocumento = 'CE'
         else:
             tipoDocumento = 'PA'
-        documento = input('\n    >>> Ingrese su número de documento: ')
-        fechaNacimiento = input('Ingrese su fecha de nacimiento, en formato DD/MM/AAAA: ')
+        documento = input('    >>> Ingrese su número de documento: ')
+        fechaNacimiento = input('    >>> Ingrese su fecha de nacimiento, en formato DD/MM/AAAA: ')
         direccion = input('    >>> Digite su dirección de residencia: ')
         celular = input('    >>> Ingrese su número de celular, sin signos de puntuación o espacios: ')
         correo = input('    >>> Ingrese su correo electrónico: ').lower()
         contrasena = input('    >>> Dígite su contraseña: ')
         while len(contrasena) < 8:
-            print(red('-'*80))
-            print(red(f'{'-'*17} La contraseña debe tener mínimo 8 caracteres {'-'*17}'))
-            print(red('-'*80))
-            contrasena = input(('    >>> Inténtelo de nuevo: '))
+            print(red(f'\n{'-'*17} La contraseña debe tener mínimo 8 caracteres {'-'*17}\n'))
+            contrasena = input(('    >>> Inténtelo de nuevo, dígite su contraseña: '))
         paciente = cls(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
         doc_paciente = {
             "nombre1": nombre1,
@@ -52,15 +52,15 @@ class Paciente(Persona):
             "correo": correo,
             "contrasena": contrasena
         }
-        db_manager.insertar("Pacientes", doc_paciente)
+        DBManager.insertar("Pacientes", doc_paciente)
         return paciente
 
     @classmethod
     def obtenerPaciente(cls):
         pacientes = []
-        resultados = db_manager.encontrar("Pacientes", {}, True)
+        resultados = DBManager.encontrar("Pacientes", {}, True)
         for doc in resultados:
-            paciente = Persona(
+            paciente = cls(
                 doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
                 doc["tipoDocumento"], doc["documento"], doc["fechaNacimiento"],
                 doc["direccion"], doc["celular"], doc["correo"], doc["contrasena"]
@@ -71,33 +71,15 @@ class Paciente(Persona):
     @classmethod
     def iniciarSesion(cls):
         print('-'*80)
-        correo = input('    >>> Ingrese su correo electrónico: ').lower()
-        contrasena = input('    >>> Digite su contraseña: ')
+        print(green('Correo electrónico:','bold'))
+        correo = input('    >>> ').lower()
+        print(green('Contraseña:','bold'))
+        contrasena = input('    >>> ')
         pacientes = cls.obtenerPaciente()
         for paciente in pacientes:
             if paciente.getCorreo() == correo and paciente.getContrasena() == contrasena:
-                print(yellow(f'\n{paciente.getNombre1()}, {paciente.getApellido1()}, esta iniciando sesión...'))
+                print(cyan(f'\n{paciente.getNombre1()}, {paciente.getApellido1()}, está iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))
         return False
-    
-    def busquedaHC(cls):
-        print('-'*80)
-        print(green(f'{'-'*25} Busqueda Historia Clinica {'-'*25}','bold'))
-        print('-'*80)
-        documento = input('    >>> Ingrese su número de documento: ')
-        pacientes = cls.obtenerPaciente()
-        for paciente in pacientes:
-            if paciente.getDocumento() == documento:
-                fecha = input('    >>> Ingrese la fecha de la consulta(DD/MM/AAAA): ')
-                historialClinico = DBManager.encontrar(cls, 'HistorialClinico', fecha, False)
-                if fecha == historialclinico['fechaConsulta']:
-                    print(f'\nHistoria Clinica del paciente {paciente.getNombre1()} {paciente.getApellido1()}')
-                    print(f'\tDocumento Paciente: {historialClinico['Documento']}')
-                    print(f'\tDatos de la consulta: {historialClinico['datosConsulta']}')
-                    print(f'\tDatos del procedimiento: {historialClinico['datosProcedimiento']}')
-                    print(f'\tHospitalizacion: {historialClinico['Hospitalizacion']}')
-                    print(f'\tOtros Servicios: {historialClinico['OtrosServicios']}')
-                    print(f'\tPrescripcion: {historialClinico['Prescripcion']}')
-

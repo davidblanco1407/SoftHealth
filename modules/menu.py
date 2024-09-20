@@ -1,230 +1,239 @@
 from simple_colors import *
-from .pacienteA import Paciente
-from .PersonalA import Personal
-from .AdministradorA import Administrador
-objPersonal=Personal('','','','','','','','','','','','')
-objPaciente=Paciente('','','','','','','','','','','')
-objAdministrador=Administrador('','','','','','','','','','','')
 
+# Menú 'Paciente'
 def menu_paciente():
     z = True
     while z == True:
         # Títulos
-        _ = ('-'*30)
-        print('\n')
-        print('-'*80)
-        print(green(f'----{_} SoftHealth {_}----','bold'))
-        print('-'*80)
-        print(black(f'      ¡Hola, bienvenido de nuevo!\n','italic'))
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
+        print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
         # Menú de Opciones
-        print(black('Menú:'),'\n1. Info. personal médico\n2. Agendar cita\n3. Tu historia clínica\n4. Cerrar sesión')
+        print(black('Inicio','bold'),'\n1. Info. personal médico\n2. Agendar cita\n3. Tu historia clínica\n4. Cerrar sesión')
         x = int(input('    >>> Para continuar, seleccione una opción: '))
         while x < 1 or x > 4:
-            print(red('    Error505, por favor seleccione un número valido...\n'))
+            print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
             x = int(input('    >>> Para continuar, seleccione una opción: '))
         match x:
-            # Sección 'Info. personal médico'
+            # Sección 'Info. Personal Médico'
             case 1:
                 # Títulos
                 print('-'*80)
                 print(green(f'{'-'*28} Info. Personal Médico {'-'*29}','bold'))
                 print('-'*80)
                 # Campos
-                print(black('Filtros de Busqueda','bold'))
-                print(black('    Para continuar llene los datos del médico','italic'))
-                name = input('\nNombre: ')
-                area = input('Área: ')
-                Paciente.busquedaMedico(name, area)
-            
+                print(black('Filtros de Búsqueda','bold'))
+                print(black('Para continuar llene los campos con los datos de su médico...','italic'))
+                name = input('    >>> Nombre: ')
+                area = input('    >>> Área: ')
+                print(cyan(f'\n{'-'*25} Los resultados de su búsqueda {'-'*24}'))
+
+            # Sección 'Agendar Cita'
             case 2:
                 # Títulos
                 print('-'*80)
-                print(green(f'{'-'*28} Agendar Cita {'-'*29}','bold'))
+                print(green(f'{'-'*33} Agendar Cita {'-'*33}','bold'))
                 print('-'*80)
                 # Opciones
-                services = input("Seleccione o especifique un servicio: ")
-                dia = input('Seleccione o asigne un dia: ')
-                print(green(f'{'-'*80}\n{'-'*22} La cita ha sido agendada {'-'*22}\n{'-'*80}'))
+                print(black('Para asignar una cita complete los datos a continuación...','italic'))
+                services = input('    >>> Seleccione o especifique un servicio: ')
+                day = input('    >>> Seleccione o asigne un dia en formato DD/MM/AAAA: ')
+                print(cyan(f'\n{'-'*27} La cita ha sido agendada {'-'*27}'))
 
+            # Sección 'Historial Clínico'
             case 3:
                 # Títulos
                 print('-'*80)
-                print(green(f'{'-'*28} Historial Clínico {'-'*29}','bold'))
+                print(green(f'{'-'*31} Historia Clínica {'-'*31}','bold'))
                 print('-'*80)
                 # Opciones
-                print('1. Ver tu historial clinico\n2. Solicitar una edicion\n3. Editar historial\n4.solicitar Actualizacion\n5. Salir')
+                print(black('\tMenú de Opciones'),'\n\t1. Ver tu historia clínica\n\t2. Solicitar una edición\n\t3. Volver al menú principal')
                 i = int(input('    >>> Para continuar, seleccione una opción: '))
                 match i:
                     case 1:
-                        objPaciente.busquedaHC()
+                        print(black('\nRecuerde que al ingresar una fecha se genera un documento donde se muestra\nsu historia clínica, a partir de la fecha ingresada hasta la actualidad.','italic'))
+                        date = input('    >>> Ingrese una fecha en formato DD/MM/AAAA: ')
+                        print(cyan(f'\n{'-'*26} Historial clínico generado {'-'*26}'))
                     case 2:
-                        edicion = input('Ingrese la información que desea solicitar un cambio: ')#opcion que envia a el personal medico solicitudes de cambio
+                        edicion = input('    >>> Ingrese la información que desea solicitar un cambio: ')
+                        print(cyan(f'\n{'-'*10} Hemos recibido tu solicitud, pronto recibirás una respuesta {'-'*9}'))
+                    case 3:
+                        menu_paciente()
 
+            # Cerrar Sesión
             case 4:
-                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}'))
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
                 z = False
 
-
+# Menú 'Personal Médico'
 def menu_personalMedico():
-    # Títulos
-    _ = ('-'*30)
-    print('\n')
-    print('-'*80)
-    print(green(f'----{_} SoftHealth {_}----','bold'))
-    print('-'*80)
-    print(black(f'      ¡Hola, bienvenido de nuevo doctor!\n','italic'))
-    # Menú de Opciones
-    print(black('Menú:'),'\n1. Info. personal paciente\n2. Agendar cita paciente\n3. info historia clínica paciente\n4. Cerrar sesión')
-    x = int(input('    >>> Para continuar, seleccione una opción: '))
-    while x < 1 or x > 5:
-        print(red('    Error, por favor seleccione un número valido...\n'))
+    z = True
+    while z == True:
+        # Títulos
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
+        print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
+        # Menú de Opciones
+        print(black('Inicio'),'\n1. Info. pacientes\n2. Agendamiento de citas\n3. Historias clínicas\n4. Cerrar sesión')
         x = int(input('    >>> Para continuar, seleccione una opción: '))
-        
-    match x:
-        
-        # Sección 'Info. personal Paciente'
-        case 1:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Info. Personal Paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Campos
-            print(black('Filtros de Busqueda','bold'))
-            print(black('    Para continuar llene los datos del paciente','italic'))
-            name = input('\nNombre: ')
-            area = input('Área: ')
-            print(green('\n    No hay resultados para su búsqueda...\n'))
-        
-        
-        case 2:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Agendar cita paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            ver = input("Agende una cita para el paciente: ")
-            print(green(f'{'-'*80}\n{'-'*22} Dejaste De Agendar una cita para el paciente {'-'*22}\n{'-'*80}'))
-            # Títulos
-            print('-'*80)
-        
-        
-        
-        case 3:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Ver Historia Clinica Del Paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            #ver = input("Seleccione que historia clinica quiere ver: ")
-            #print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
-            # Títulos
-            #print('-'*80)
-            objPersonal.busquedaHC()
+        while x < 1 or x > 5:
+            print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+            x = int(input('    >>> Para continuar, seleccione una opción: '))
+        match x:
+            # Sección 'Info. Personal'
+            case 1:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*27} Info. Personal Paciente {'-'*28}','bold'))
+                print('-'*80)
+                # Campos
+                print(black('Filtros de Búsqueda','bold'))
+                print(black('Para continuar, complete los campos con los datos del paciente...','italic'))
+                nro_doc = input('    >>> Número documento del paciente: ')
+                print(cyan(f'\n{'-'*25} Los resultados de su búsqueda {'-'*24}'))
             
-        case 4:
-            print(green(f'{'-'*28} Editar Historia Clinica Del Paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            objPersonal.cambioHC()
+            # Sección 'Agendamiento de Citas'
+            case 2:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*33} Agendar Cita {'-'*33}','bold'))
+                print('-'*80)
+                # Opciones
+                print(black('Para asignar una cita llene los datos a continuación...','italic'))
+                nro_doc = input('    >>> Número documento del paciente: ')
+                services = input('    >>> Seleccione o especifique un servicio: ')
+                day = input('    >>> Seleccione o asigne un dia en formato DD/MM/AAAA: ')
+                print(cyan(f'\n{'-'*27} La cita ha sido agendada {'-'*27}'))
             
-            
-            
-        # actualizar. 'Info historial paciente'
-        case 5:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Actualizar Historia Clinica Del Paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            actualizar = input("actualice la historia clinica del paciente: ")
-            print(green(f'{'-'*80}\n{'-'*22} Historia clinica paciente actualizada {'-'*22}\n{'-'*80}'))
+            # Sección 'Historias Clínicas'
+            case 3:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*31} Historia Clínica {'-'*31}','bold'))
+                print('-'*80)
+                # Opciones
+                print(black('Para continuar, complete los campos con los datos del paciente...','italic'))
+                nro_doc = input('    >>> Número documento del paciente: ')
+                print(black('Recuerde que al ingresar una fecha se genera un documento donde se muestra\nsu historia clínica, a partir de la fecha ingresada hasta la actualidad.','italic'))
+                date = input('    >>> Ingrese una fecha en formato DD/MM/AAAA: ')
+                print(cyan(f'\n{'-'*26} Historial clínico generado {'-'*26}'))
+                print('\n\t1. Si\n\t2. No')
+                i = int(input('    >>> ¿Desea editarlo?: '))
+                while i < 1 or x > 2:
+                    if i == 1:
+                        print(magenta('\nEditando...'))
+                        break
+                    elif i == 2:
+                        print(yellow(f'\n{'-'*28} Gracias por confirmar {'-'*29}','italic'))
+                        break
+                    else:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        i = int(input('    >>> ¿Desea editarlo?: '))
+                
+            # Cerrar Sesión
+            case 4:
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
+                z = False
 
-def menuAdministrador():
-    # Títulos
-    _ = ('-'*30)
-    print('\n')
-    print('-'*80)
-    print(green(f'----{_} SoftHealth {_}----','bold'))
-    print('-'*80)
-    print(black(f'      ¡Hola, bienvenido de nuevo administrador !\n','italic'))
-    # Menú de Opciones
-    print(black('Menú:'),'\n1. Info. personal médico\n2. agregar personal medico\n3. Administrar citas\n4.  consultar historia clínica\n5. editar historia clinica paciente\n6. actualizar historia clinica paciente\n7. Cerrar sesión')
-    x = int(input('    >>> Para continuar, seleccione una opción: '))
-    while x < 1 or x > 7:
-        print(red('    Error505, por favor seleccione un número valido...\n'))
+# Menú 'Administrador'
+def menu_administrador():
+    z = True
+    while z == True:
+        # Títulos
+        print(green(f'\n{'-'*80}\n{'-'*30} 🏠 Menú principal {'-'*31}\n{'-'*80}','bold'))
+        print(black(f'    ¡Hola, bienvenido de nuevo!','italic'))
+        # Menú de Opciones
+        print(black('Inicio','bold'),'\n1. Info. personal\n2. Agendamiento de citas\n3. Historias clínicas\n4. Cerrar sesión')
         x = int(input('    >>> Para continuar, seleccione una opción: '))
-        
-    match x:
-        
-        # Sección 'Info. personal Medico'
-        case 1:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Info. Personal Medico {'-'*29}','bold'))
-            print('-'*80)
-            # Campos
-            print(black('Filtros de Busqueda','bold'))
-            print(black('    Para continuar llene los datos del medico','italic'))
-            name = input('\nNombre: ')
-            area = input('Área: ')
-            print(green('\n    No hay resultados para su búsqueda...\n'))
-        
-        
-        
-        # Sección 'agregar personal medico'
-        
-        case 2:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Agregar Personal Medico {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            agregar = input("agrege el nuevo personal medico : ")
-            print(green(f'{'-'*80}\n{'-'*22} saliste de agregar personal medico {'-'*22}\n{'-'*80}'))
-            
-        # 'administrar citas'
-        case 3:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28}  Administrar citas {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            consultar_citas = input("Administre las citas del Paciente : ")
-            print(green(f'{'-'*80}\n{'-'*22} saliste de administrar  citas paciente {'-'*22}\n{'-'*80}'))
-            
-        # consultar. 'Historia clinica paciente'
-        case 4:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Ver Historia Clinica Del Paciente {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            #ver = input("Seleccione que historia clinica quiere ver: ")
-            #print(green(f'{'-'*80}\n{'-'*22} Dejaste De Ver Historia Clinica Del Paciente {'-'*22}\n{'-'*80}'))
-            # Títulos
-            #print('-'*80)
-            objAdministrador.busquedaHC()
-            
-        # editar. 'historia clinica paciente'
-        case 5:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Editar Historia Clinica Del Paciente  {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-            
-            objPersonal.cambioHC()
-            
-        # actualizar. 'Actualizar Historia clinica paciente'
-        case 6:
-            # Títulos
-            print('-'*80)
-            print(green(f'{'-'*28} Actualizar Historia Clinica Del Paciente  {'-'*29}','bold'))
-            print('-'*80)
-            # Opciones
-# 'cerrar sesion' :r_historia_paciente = input("actualice la historia clinica del pacSe ha cerrado sesión correctamente     print(green(f'{'-'*80}\n{'-'*22} saliste de actualizar historia clinica del paciente {'-'*22}\n{'-'*80}'))
-            
-        # 'cerrar sesion' :
-        case 7:
-                print(red(f'{'-'*80}\n{'-'*22} has salido del menu administ {'-'*22}\n{'-'*80}'))
+        while x < 1 or x > 5:
+            print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+            x = int(input('    >>> Para continuar, seleccione una opción: '))
+        match x:
+            # Sección 'Info. Personal Médico'
+            case 1:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*28} Info. Personal Médico {'-'*29}','bold'))
+                print('-'*80)
+                # Campos
+                print(black('    El personal médico que desea buscar, ¿Ya se encuentra registrado en\n    nuestra base de datos?','italic'))
+                print('\t1. Si\n\t2. No')
+                a = int(input('    >>> Para continuar, seleccione una opción: '))
+                while a < 1 or a > 2:
+                    print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                    a = int(input('    >>> Para continuar, seleccione una opción: '))
+                if a == 1:
+                    print(black('\nFiltros de Búsqueda','bold'))
+                    print(black('Para continuar llene los campos con los datos del personal médico...','italic'))
+                    name = input('    >>> Nombre: ')
+                    area = input('    >>> Área: ')
+                    print(cyan(f'\n{'-'*25} Los resultados de su búsqueda {'-'*24}'))
+                    print('\n\t1. Si\n\t2. No')
+                    i = int(input('    >>> ¿Desea editar uno de los datos?: '))
+                    while i < 1 or i > 2:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        i = int(input('    >>> ¿Desea editar uno de los datos?: '))
+                    if i == 1:
+                        print(magenta('\nEditando...'))
+                    elif i == 2:
+                        print(yellow(f'\n{'-'*28} Gracias por confirmar {'-'*29}','italic'))
+                    else:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        i = int(input('    >>> ¿Desea editarlo?: '))
+                elif a == 2:
+                    print('\n\t1. Si\n\t2. No')
+                    n = int(input('    >>> ¿Desea registrar uno nuevo?: '))
+                    while n < 1 or n > 2:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        n = int(input('    >>> ¿Desea registrar uno nuevo?: '))
+                    if n == 1:
+                        pass
+                    elif n == 2:
+                        print(yellow(f'\n{'-'*28} Gracias por confirmar {'-'*29}','italic'))
+                    else:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        n = int(input('    >>> ¿Desea registrar uno nuevo?: '))
+                else:
+                    print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                    a = int(input('    >>> Para continuar, seleccione una opción: '))
+                
+            # Sección 'Agendamiento de Citas'
+            case 2:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*33} Agendar Cita {'-'*33}','bold'))
+                print('-'*80)
+                # Opciones
+                print(black('Para asignar una cita llene los datos a continuación...','italic'))
+                nro_doc = input('    >>> Número documento del paciente: ')
+                services = input('    >>> Seleccione o especifique un servicio: ')
+                day = input('    >>> Seleccione o asigne un dia en formato DD/MM/AAAA: ')
+                print(cyan(f'\n{'-'*27} La cita ha sido agendada {'-'*27}'))
+                
+            # Sección 'Historias Clínicas'
+            case 3:
+                # Títulos
+                print('-'*80)
+                print(green(f'{'-'*31} Historia Clínica {'-'*31}','bold'))
+                print('-'*80)
+                # Opciones
+                print(black('Para continuar, complete los campos con los datos del paciente...','italic'))
+                nro_doc = input('    >>> Número documento del paciente: ')
+                print(black('Recuerde que al ingresar una fecha se genera un documento donde se muestra\nsu historia clínica, a partir de la fecha ingresada hasta la actualidad.','italic'))
+                date = input('    >>> Ingrese una fecha en formato DD/MM/AAAA: ')
+                print(cyan(f'\n{'-'*26} Historial clínico generado {'-'*26}'))
+                print('\n\t1. Si\n\t2. No')
+                i = int(input('    >>> ¿Desea editarlo?: '))
+                while i < 1 or x > 2:
+                    if i == 1:
+                        print(magenta('\nEditando...'))
+                        break
+                    elif i == 2:
+                        print(yellow(f'\n{'-'*28} Gracias por confirmar {'-'*29}','italic'))
+                        break
+                    else:
+                        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+                        i = int(input('    >>> ¿Desea editarlo?: '))
+                
+            # Cerrar Sesión
+            case 4:
+                print(red(f'{'-'*80}\n{'-'*22} Se ha cerrado sesión correctamente {'-'*22}\n{'-'*80}\n','bold'))
                 z = False
