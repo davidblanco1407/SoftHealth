@@ -78,7 +78,8 @@ class Administrador(Persona):
         administradores = cls.obtenerAdmin()
         for admin in administradores:
             if admin.getCorreo() == correo and admin.getContrasena() == contrasena:
-                print(cyan('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
+                print(cyan(f'\n{admin.getNombre1()}, {admin.getApellido1()}, está iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
+        print(red('Correo o contraseña incorrectos.'))
         return False

@@ -78,7 +78,8 @@ class Paciente(Persona):
         pacientes = cls.obtenerPaciente()
         for paciente in pacientes:
             if paciente.getCorreo() == correo and paciente.getContrasena() == contrasena:
-                print(cyan('\n',paciente.getNombre1(), paciente.getApellido1(),' esta iniciando sesión...'))
+                print(cyan(f'\n{paciente.getNombre1()}, {paciente.getApellido1()}, está iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
+        print(red('Correo o contraseña incorrectos.'))
         return False
