@@ -52,21 +52,13 @@ class Administrador(Persona):
             "correo": correo,
             "contrasena": contrasena
         }
-<<<<<<< HEAD
         DBManager.insertar("Administradores", doc_admin)
-=======
-        db_manager.insertar("Administradores", doc_admin)
->>>>>>> santiago
         return admin
 
     @classmethod
     def obtenerAdmin(cls):
         administradores = []
-<<<<<<< HEAD
         resultados = DBManager.encontrar("Administradores", {}, True)
-=======
-        resultados = db_manager.encontrar("Administradores", {}, True)
->>>>>>> santiago
         for doc in resultados:
             admin = cls(
                 doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
@@ -86,15 +78,8 @@ class Administrador(Persona):
         administradores = cls.obtenerAdmin()
         for admin in administradores:
             if admin.getCorreo() == correo and admin.getContrasena() == contrasena:
-<<<<<<< HEAD
                 print(cyan(f'\n{admin.getNombre1()}, {admin.getApellido1()}, está iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))
         return False
-=======
-                print(cyan('\n',admin.getNombre1(), admin.getApellido1(),' esta iniciando sesión...'))
-                input(green('Inicio de sesión correcto, "enter" para continuar '))
-                return True
-        return False
->>>>>>> santiago
