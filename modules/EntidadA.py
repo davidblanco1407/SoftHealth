@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+from simple_colors import *
+>>>>>>> santiago
 from .db import *
 
 class Entidad:
@@ -42,17 +46,34 @@ class Entidad:
 
     @classmethod
     def registrarEntidad(cls):
+<<<<<<< HEAD
         print('Sobre la IPS/EPS: ', '☲' * 40)
         nombre = input('Ingrese el nombre de la IPS/EPS: ')
         nit = input('Ingrese el NIT de la IPS/EPS: ')
         categoria = input('Ingrese la categoría de la IPS/EPS (I, II, III, IV, V): ').upper()
         while categoria not in ['I', 'II', 'III', 'IV', 'V']:
             categoria = input('Ingrese una categoría válida (I, II, III, IV, V): ').upper()
+=======
+        print('-'*80)
+        print(green(f'{'-'*30} Datos de la IPS/EPS {'-'*30}','bold'))
+        print('-'*80)
+        print(black('Para continuar ingrese los datos requeridos...','italic'))
+        nombre = input('    >>> Ingrese el nombre de la IPS/EPS: ')
+        nit = input('    >>> Ingrese el NIT de la IPS/EPS: ')
+        categoria = input('    >>> Ingrese la categoría de la IPS/EPS (I, II, III, IV, V): ').upper()
+        while categoria not in ['I', 'II', 'III', 'IV', 'V']:
+            print(red(f'\n{'-'*16} Error, por favor ingrese una categoría valida {'-'*17}\n'))
+            categoria = input('    >>> Ingrese la categoría de la IPS/EPS (I, II, III, IV, V): ').upper()
+>>>>>>> santiago
 
         # Definir los servicios ofrecidos según la categoría
         serviciosOfrecidos = cls._definirServicios(categoria)
 
+<<<<<<< HEAD
         direccion = input('Ingrese la dirección de la IPS/EPS: ')
+=======
+        direccion = input('    >>> Ingrese la dirección de la IPS/EPS: ')
+>>>>>>> santiago
         nuevaEntidad = cls(nombre, nit, categoria, serviciosOfrecidos, direccion)
         cls.entidades.append(nuevaEntidad)
         doc_entidad = {

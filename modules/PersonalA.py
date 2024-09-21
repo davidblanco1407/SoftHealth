@@ -3,9 +3,18 @@ from .persona import *
 from .db import *
 
 class PersonalHospital(Persona):
+<<<<<<< HEAD
     def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo):
         super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
         self.__cargo = cargo
+=======
+    personal = []
+
+    def __init__(self, nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena, cargo):
+        super().__init__(nombre1, nombre2, apellido1, apellido2, tipoDocumento, documento, fechaNacimiento, direccion, celular, correo, contrasena)
+        self.__cargo = cargo
+        PersonalHospital.personal.append(self)
+>>>>>>> santiago
 
     @classmethod
     def registrarPersonal(cls):
@@ -55,13 +64,21 @@ class PersonalHospital(Persona):
             "contrasena": contrasena,
             "cargo": cargo
         }
+<<<<<<< HEAD
         DBManager.insertar("Personal", doc_personal)
+=======
+        db_manager.insertar("Personal", doc_personal)
+>>>>>>> santiago
         return personal
 
     @classmethod
     def obtenerPersonal(cls):
         personals = []
+<<<<<<< HEAD
         resultados = DBManager.encontrar("Personal", {}, True)
+=======
+        resultados = db_manager.encontrar("Personal", {}, True)
+>>>>>>> santiago
         for doc in resultados:
             personal = cls(
                 doc["nombre1"], doc["nombre2"], doc["apellido1"], doc["apellido2"],
@@ -81,8 +98,27 @@ class PersonalHospital(Persona):
         personals = cls.obtenerPersonal()
         for persona in personals:
             if persona.getCorreo() == correo and persona.getContrasena() == contrasena:
+<<<<<<< HEAD
                 print(cyan(f'\n{persona.getNombre1()}, {persona.getApellido1()}, está iniciando sesión...'))
                 input(green('Inicio de sesión correcto, "enter" para continuar '))
                 return True
         print(red('Correo o contraseña incorrectos.'))
         return False
+=======
+                print(cyan('\n',persona.getNombre1(), persona.getApellido1(),' esta iniciando sesión...'))
+                input(green('Inicio de sesión correcto, "enter" para continuar '))
+                return True
+        return False
+    
+    @classmethod
+    def busquedaPaciente(cls, nro_doc):
+        for medico in cls.personal:
+            if f"{medico.nombre1} {medico.nombre2}".lower() == nro_doc.lower():  # Ajustar según cómo ingresas el nombre
+                return {
+                    'nombre': f"{medico.nombre1} {medico.nombre2}",
+                    'apellidos': f"{medico.apellido1} {medico.apellido2}",
+                    'telefono': medico.celular,
+                    'correo': medico.correo
+                }
+        return None  # Si no se encuentra
+>>>>>>> santiago

@@ -3,7 +3,7 @@ import pymongo
 
 #Creación de la clase para la conexión a mongodb
 class DBManager:
-    def __init__(self, uri="mongodb://localhost:27017/", db_name="SofhtHealthDB"):
+    def __init__(self, uri="mongodb://localhost:27017/", db_name="softhealth"):
         self.cliente = pymongo.MongoClient(uri)
         self.db = self.cliente[db_name]
 

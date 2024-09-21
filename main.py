@@ -27,11 +27,22 @@ def base():
         iniciarSesion()
 
 def primeraVez():
+<<<<<<< HEAD
     opcion=0
     while opcion<1 or opcion>2:
         print(black('¿Es primera vez en SoftHealth?\n\t1. Sí.\n\t2. No.'))
         opcion=int(input(('    >>> Digite su respuesta: ')))
     if opcion==1:
+=======
+    opcion = 0
+    print(black('¿Es su primera vez en SoftHealth?','italic'))
+    print(black('\t1. Sí.\n\t2. No.'))
+    opcion = int(input('    >>> Seleccione una opción: '))
+    while opcion < 1 or opcion > 2:
+        print(red(f'\n{'-'*16} Error, por favor seleccione una opción valida {'-'*17}\n'))
+        opcion = int(input('    >>> Seleccione una opción: '))
+    if opcion == 1:
+>>>>>>> santiago
         return True
     else:
         return False
