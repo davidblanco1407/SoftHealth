@@ -16,7 +16,7 @@
 ★ **Sistema Operativo:** Windows 10 o superior, macOS Mojave o superior.  
 ★ **Conexión a Internet:** Requerida para acceder a funcionalidades en línea.  
 ★ **MongoDBCompass**: Gestor de base de datos requerido para su correcto funcionamiento, [descargar](https://www.mongodb.com/try/download/compass).  
-★ **Editor de Código:** Requerida para ejecutar el código, recomendamos ***Visual Studio Code***.  
+★ **Editor de Código:** Requerida para ejecutar el código, recomendamos ***Visual Studio Code***, [descargar](https://code.visualstudio.com/download).  
 ★ **Navegador:** Google Chrome, Mozilla Firefox o Safari (últimas versiones).
 ## 3. Ingreso al Sistema
 Antes de ejecutar el código debe instalar una librería externa que no viene por defecto en **python**, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
@@ -27,7 +27,7 @@ Antes de ejecutar el código debe instalar una librería externa que no viene po
 5. Extraer la carpeta ***SoftHealth-main***
 6. Buscar el file ***db***
 7. Dar click derecho y seleccionar la opción ***Copiar como ruta de acceso***
-8. Por defecto la ruta de acceso está separada por ***slash (/)***, verificar y reemplazar cada uno con ***backslash (\)***, para dígitarlo presionar **Alt+92**
+8. Por defecto la ruta de acceso está separada por ***slash (/)***, verificar y reemplazar cada uno con ***backslash (\)*** para dígitarlo presionar **Alt+92**
 9. Abrir ***Mongo DB Compass***
 10. Nuevamente en el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 11. Ingresa el comando ***mongorestore --db softhealth (ruta de acceso copiada)***
