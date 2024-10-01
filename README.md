@@ -16,7 +16,7 @@
 ★ **Sistema Operativo:** Windows 10 o superior, macOS Mojave o superior.  
 ★ **Conexión a Internet:** Requerido para acceder a funcionalidades en línea.  
 ★ **MongoDBCompass**: Gestor de base de datos requerido para su correcto funcionamiento, [descargar](https://www.mongodb.com/try/download/compass).  
-★ **Editor de Código:** Requerido para ejecutar el código, recomendamos ***Visual Studio Code***, [descargar](https://code.visualstudio.com/download).  
+★ **Editor de Código:** Requerido para ejecutar el código recomendamos ***Visual Studio Code***, [descargar](https://code.visualstudio.com/download).  
 ★ **Navegador:** Google Chrome, Mozilla Firefox o Safari (últimas versiones).
 ## 3. Ingreso al Sistema
 Antes de ejecutar el código debe instalar dos librerías externas que no viene por defecto ni en **Python** ni en **MongoDBCompass**, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
