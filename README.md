@@ -27,16 +27,15 @@ Antes de ejecutar el código debe instalar una librería externa que no viene po
 5. Extraer la carpeta ***SoftHealth-main***
 6. Buscar el file ***db***
 7. Dar click derecho y seleccionar la opción ***Copiar como ruta de acceso***
-8. Por defecto la ruta de acceso está separada por ***slash (/)***, verificar y reemplazar cada uno con ***backslash (\)*** para dígitarlo presionar **Alt+92**
+8. Por defecto la ruta de acceso está separada por ***slash ( / )***. Verificar y reemplazar cada uno con ***backslash ( \\ )***, para dígitarlo presionar ***Alt+92***
 9. Abrir ***Mongo DB Compass***
 10. Nuevamente en el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 11. Ingresa el comando ***mongorestore --db softhealth (ruta de acceso copiada)***
-12. Verificar si se importó la base de datos ***SoftHealth***
+12. Verificar si se importó la base de datos ***softhealth***
 13. Abrir ***Visual Studio Code*** o su editor de código favorito
 14. Abrir la carpeta ***SoftHealth-main***
 15. Buscar el file ***main***
 16. Ejecutar
-17. Siga los pasos indicados para navegar a través del sistema
 ## 4. Navegación por el Sistema
 En pantalla siempre se va a mostrar un menú con diferentes opciones enumeradas, con el fin de que si desea seleccionar una de ellas debe ingresar el número que corresponda a la función que desea usar.
 ## 5. Funciones Principales
