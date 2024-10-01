@@ -22,14 +22,14 @@
 Antes de ejecutar el código debe instalar una librería externa que no viene por defecto en python, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
 1. En el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 2. Ingresa el comando ***pip install simple-colors***, si no funciona intenta con el comando ***py -m pip install simple-colors***
-3. Abrir el enlace del repositorio **SoftHealth**
+3. Abrir el enlace del repositorio ***SoftHealth***
 4. En la rama **main**, descargar el archivo zip
 5. Extraer la carpeta ***SoftHealth-main***
 6. Buscar el file ***db***
 7. Dar click derecho y seleccionar la opción ***Copiar como ruta de acceso***
 8. Por defecto la ruta de acceso está separada por ***slash (/)***, verificar y reemplazar cada uno con ***backslash (\)***, para dígitarlo presionar **Alt+92**
 9. Abrir ***Mongo DB Compass***
-10. Nuevamente en el **Buscador de Windows**, buscar y ejecutar **Simbolo del Sistema**
+10. Nuevamente en el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 11. Ingresa el comando ***mongorestore --db softhealth (ruta de acceso copiada)***
 12. Verificar si se importó la base de datos ***SoftHealth***
 13. Abrir ***Visual Studio Code*** o su editor de código favorito
