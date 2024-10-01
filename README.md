@@ -11,7 +11,7 @@
 6. Preguntas Frecuentes
 7. Contacto y Soporte Técnico
 ## 1. Introducción
-SoftHealth es un proyecto formativo de **Análisis y desarrollo de Software** para el sector salud, dirigido por el **SENA**. Este manual está diseñado para ayudar a los usuarios a familiarizarse con nuesto sistema. Aquí encontrarás instrucciones sobre cómo utilizar las principales funciones y resolver problemas comunes.
+**SoftHealth** es un proyecto formativo de **Análisis y desarrollo de Software** para el sector salud, dirigido por el **SENA**. Este manual está diseñado para ayudar a los usuarios a familiarizarse con nuesto sistema. Aquí encontrarás instrucciones sobre cómo utilizar las principales funciones y resolver problemas comunes.
 ## 2. Requisitos del Sistema
 ★ **Sistema Operativo:** Windows 10 o superior, macOS Mojave o superior.  
 ★ **Conexión a Internet:** Requerida para acceder a funcionalidades en línea.  
