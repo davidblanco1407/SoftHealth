@@ -14,9 +14,9 @@
 **SoftHealth** es un proyecto formativo de **Análisis y desarrollo de Software** para el sector salud, dirigido por el **SENA**. Este manual está diseñado para ayudar a los usuarios a familiarizarse con nuesto sistema. Aquí encontrarás instrucciones sobre cómo utilizar las principales funciones y resolver problemas comunes.
 ## 2. Requisitos del Sistema
 ★ **Sistema Operativo:** Windows 10 o superior, macOS Mojave o superior.  
-★ **Conexión a Internet:** Requerida para acceder a funcionalidades en línea.  
+★ **Conexión a Internet:** Requerido para acceder a funcionalidades en línea.  
 ★ **MongoDBCompass**: Gestor de base de datos requerido para su correcto funcionamiento, [descargar](https://www.mongodb.com/try/download/compass).  
-★ **Editor de Código:** Requerida para ejecutar el código, recomendamos ***Visual Studio Code***, [descargar](https://code.visualstudio.com/download).  
+★ **Editor de Código:** Requerido para ejecutar el código, recomendamos ***Visual Studio Code***, [descargar](https://code.visualstudio.com/download).  
 ★ **Navegador:** Google Chrome, Mozilla Firefox o Safari (últimas versiones).
 ## 3. Ingreso al Sistema
 Antes de ejecutar el código debe instalar una librería externa que no viene por defecto en **python**, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
