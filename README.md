@@ -22,12 +22,12 @@
 Antes de ejecutar el código debe instalar dos librerías externas que no viene por defecto ni en **Python** ni en **MongoDBCompass**, consulte en la sección **6. Preguntas frecuentes** para mayor información.
 1. En el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 2. Ingresa el comando ***pip install simple-colors***, si no funciona intenta con el comando ***py -m pip install simple-colors***
-3. Descargar [***MongoDB Database Tools***](https://www.mongodb.com/try/download/database-tools)
+3. Descargar [**MongoDB Database Tools**](https://www.mongodb.com/try/download/database-tools)
 4. Descomprimir el zip descargado y dirigirse a la carpeta ***bin***
 5. Copiar todos los archivos
 6. Dirigirse a la ruta ***C:\Program Files\MongoDB\Server\7.0\bin\bin***
 7. Pegar todos los archivos
-9. En el navegador de su preferencia dirigirse a el enlace del repositorio [***SoftHealth***](https://github.com/davidblanco1407/SoftHealth.git)
+9. En el navegador de su preferencia dirigirse a el enlace del repositorio [**SoftHealth**](https://github.com/davidblanco1407/SoftHealth.git)
 11. Dentro de la rama **main**, descargar el archivo zip
 12. Descomprimir y dentro de la carpeta ***SoftHealth-main*** buscar el file ***db***
 13. Dar click derecho y seleccionar la opción ***Copiar como ruta de acceso***
