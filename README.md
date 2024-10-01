@@ -19,7 +19,7 @@
 ★ **Editor de Código:** Requerida para ejecutar el código, recomendamos ***Visual Studio Code***.  
 ★ **Navegador:** Google Chrome, Mozilla Firefox o Safari (últimas versiones).
 ## 3. Ingreso al Sistema
-Antes de ejecutar el código debe instalar una librería externa que no viene por defecto en python, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
+Antes de ejecutar el código debe instalar una librería externa que no viene por defecto en **python**, consulte en la sección 6 **Preguntas frecuentes** para mayor información.
 1. En el ***Buscador de Windows***, buscar y ejecutar ***Simbolo del Sistema***
 2. Ingresa el comando ***pip install simple-colors***, si no funciona intenta con el comando ***py -m pip install simple-colors***
 3. Abrir el enlace del repositorio ***SoftHealth***
