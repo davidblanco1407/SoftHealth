@@ -15,7 +15,7 @@
 ## 2. Requisitos del Sistema
 ★ **Sistema Operativo:** Windows 10 o superior, macOS Mojave o superior.  
 ★ **Conexión a Internet:** Requerida para acceder a funcionalidades en línea.  
-★ **MongoDBCompass**: Gestor de base de datos requerida para su correcto funcionamiento, [descargar](https://www.mongodb.com/try/download/compass).  
+★ **MongoDBCompass**: Gestor de base de datos requerido para su correcto funcionamiento, [descargar](https://www.mongodb.com/try/download/compass).  
 ★ **Editor de Código:** Requerida para ejecutar el código, recomendamos ***Visual Studio Code***.  
 ★ **Navegador:** Google Chrome, Mozilla Firefox o Safari (últimas versiones).
 ## 3. Ingreso al Sistema
