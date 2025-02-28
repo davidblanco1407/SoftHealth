@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema clínico para la gestión de pacientes, médicos y administrativos.">
+    <title>{% block title %}Softhealth{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__rectangle"></div>
+        <a href="{% url 'home_redirect' %}"><img src="{% static 'Images/softhealth.png' %}" class="softhealth"></a>
+        <nav>
+            <ul>
+
+                <li><a href="{% url 'home_redirect' %}"><img src="{% static 'Images/home.svg' %}" class="home"></a></li>
+                <li>
+                    {% if user.is_authenticated %}
+                    <li>
+                        <form class="logout-form" method="post" action="{% url 'logout' %}" style="background-color: #454545; box-shadow: none">
+                            {% csrf_token %}
+                            <button type="submit" class="logout-btn">
+                                <img src="{% static 'Images/user.svg' %}" class="user">Cerrar sesión
+                            </button>
+                        </form>
+                    </li>
+                    {% else %}
+                        <a href="#">
+                            <img src="{% static 'Images/user.svg' %}" class="user">Iniciar sesión
+                        </a>
+                        <ul class="types_user">
+                            <li><a href="{% url 'login_paciente' %}">Paciente</a></li>
+                            <li><a href="{% url 'login_medico' %}">Médico</a></li>
+                            <li><a href="{% url 'login_aux_administrativo' %}">Administrativo</a></li>
+                        </ul>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="carousel">
+        <div class="carousel-track">
+          <img src="{% static 'Images/banner.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_1.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_2.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_3.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_4.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_5.png' %}" class="carousel-image">
+          <img src="{% static 'Images/banner_6.png' %}" class="carousel-image">
+        </div>
+        <button class="carousel-btn prev">&lt;</button>
+        <button class="carousel-btn next">&gt;</button>
+    </div>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 SoftHealth. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0; // Índice de la imagen actual
+        const track = document.querySelector('.carousel-track');
+        const images = document.querySelectorAll('.carousel-image');
+        const totalImages = images.length;
+        const intervalTime = 5000; // Tiempo en milisegundos entre cada cambio automático
+        let autoSlideInterval;
+
+        // Actualiza el carrusel para mostrar la imagen activa
+        function updateCarousel(index) {
+            const imageWidth = images[0].clientWidth; // Usa clientWidth para calcular el ancho
+            track.style.transform = `translateX(-${index * imageWidth}px)`;
+        }
+
+        // Cambia a la siguiente imagen automáticamente
+        function goToNextImage() {
+            currentIndex = (currentIndex + 1) % totalImages; // Incrementa el índice y vuelve al inicio si es el final
+            updateCarousel(currentIndex);
+        }
+
+        // Cambia a la imagen anterior
+        function goToPrevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Decrementa el índice y vuelve al final si es el inicio
+            updateCarousel(currentIndex);
+        }
+
+        // Configura el temporizador para el desplazamiento automático
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(goToNextImage, intervalTime);
+        }
+
+        // Detiene el desplazamiento automático
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+
+        // Eventos para los botones de navegación manual
+        document.querySelector('.carousel-btn.next').addEventListener('click', () => {
+            stopAutoSlide(); // Detiene el auto-slide mientras se navega manualmente
+            goToNextImage();
+            startAutoSlide(); // Reinicia el auto-slide
+        });
+
+        document.querySelector('.carousel-btn.prev').addEventListener('click', () => {
+            stopAutoSlide(); // Detiene el auto-slide mientras se navega manualmente
+            goToPrevImage();
+            startAutoSlide(); // Reinicia el auto-slide
+        });
+
+        // Inicia el carrusel automático al cargar la página
+        startAutoSlide();
+
+        // Reinicia el índice al ajustar el tamaño de la ventana
+        window.addEventListener('resize', () => updateCarousel(currentIndex));
+            </script>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Mi Perfil - Paciente
+{% endblock %}
+
+{% block content %}
+
+    <!-- Bienvenida -->
+    <section class="welcome">
+        <h1>Bienvenido, {{ user.username }}</h1>
+    </section>
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <!-- Historia Clínica y Citas Médicas -->
+    <div class="row">
+        <div class="historia">
+            <img src="{% static 'Images/h_clinica.svg' %}" alt="Icono h_clinica" class="icon">
+            <h3>Historia Clínica</h3>
+            <p>Ver mi historia clínica...</p>
+            <a class="btn" href="{% url 'listar_historia_clinica' %}" role="button">Ingresar</a>
+        </div>
+        <div class="calendar">
+            <img src="{% static 'Images/calendar.svg' %}" alt="Icono calendar" class="icon">
+            <h3>Citas Médicas</h3>
+            <p>Agendar cita médica...</p>
+            <a href="{% url 'insertar_cita' %}" class="btn" role="button">Ingresar</a>
+        </div>
+    </div>
+
+    <!-- Datos actuales del paciente -->
+    <form method="POST">
+        <h2>Mi Perfil</h2>
+        {% csrf_token %}
+
+        <ul>
+            <li><strong>Nombre:</strong> {{ paciente.nombre }}</li>
+            <li><strong>Documento:</strong> {{ paciente.documento }}</li>
+            <li><strong>Correo:</strong> {{ paciente.correo }}</li>
+            <li><strong>Fecha de Nacimiento:</strong> {{ paciente.fecha_nacimiento }}</li>
+            <li><strong>EPS:</strong> {{ paciente.eps.nombre_eps }}</li>
+        </ul>
+
+        <a type="submit" href="{% url 'actualizar_paciente' paciente.id %}" class="actualizar">Actualizar datos...</a>
+
+        <p><br></p>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Ingresar Cita Médica
+{% endblock %}
+
+{% block content %}
+
+<form method="POST">
+    <h2>Agendar Cita Médica</h2>
+    {% csrf_token %}
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+    
+    <label for="paciente">Paciente:</label>
+    <select id="paciente" name="paciente" required>
+        {% for paciente in pacientes %}
+            <option value="{{ paciente.id }}">{{ paciente.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="medico">Médico:</label>
+    <select id="medico" name="medico" required>
+        {% for medico in medicos %}
+            <option value="{{ medico.id }}">{{ medico.nombre }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required>
+
+    <label for="hora">Hora:</label>
+    <input type="time" id="hora" name="hora" required>
+
+    <label for="motivo">Motivo:</label>
+    <textarea id="motivo" name="motivo" required></textarea>
+
+    <button type="submit">Guardar</button>
+</form>
+    
+{% endblock %}

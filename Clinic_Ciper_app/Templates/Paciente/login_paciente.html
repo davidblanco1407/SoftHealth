@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Inicio de Sesión - Paciente{% endblock %}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+       /* Estilos globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: url("{% static 'Images/fondo.png' %}") no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Formulario */
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            font-family: 'Inter';
+        }
+
+        /* Inputs */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            max-width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+            font-family: 'Inter';
+        }
+
+        .form-group input:focus {
+            border-color: #3cb22a;
+            box-shadow: 0 0 6px rgba(60, 178, 42, 0.5);
+        }
+
+        /* Botón */
+        button {
+            font-family: 'Inter';
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            background-color: #3cb22a;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #2d7a20;
+            transform: scale(1.02);
+        }
+
+        /* Logo */
+        .imgs__img3 {
+            display: block;
+            margin: 0 auto 20px;
+            width: 120px;
+            height: auto;
+        }
+
+        /* Alertas */
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+
+<body>
+    {% block content %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <div class="imgs">
+            <img class="imgs__img3" src="{% static 'Images/softhealth_login.png' %}" alt="Logo SoftHealth">
+        </div>
+
+        <div class="form-group">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required class="form-control" placeholder="Ingrese su usuario">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required class="form-control" placeholder="Ingrese su contraseña">
+        </div>
+
+        <button type="submit">Iniciar sesión</button>
+        <button type="button" onclick="window.location.href='{% url 'insertar_paciente' %}'" style="background-color: #007bff; margin-top: 10px;">
+            Registrarse
+        </button>
+    </form>
+
+    {% endblock %}
+</body>
+</html>

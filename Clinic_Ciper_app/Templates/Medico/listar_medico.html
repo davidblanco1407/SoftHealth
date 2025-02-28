@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar Médicos
+{% endblock %}
+
+{% block content %}
+<div class="select">
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <h3>Listado de Médicos</h3>
+
+    <!-- Tabla para mostrar los médicos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Tipo Doc.</th>
+                <th>Nro. Doc.</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medico in medicos %}
+                <tr>
+                    <td>{{ medico.tipo_documento }}</td>
+                    <td>{{ medico.documento }}</td>
+                    <td>{{ medico.nombre }}</td>
+                    <td>{{ medico.especialidad }}</td>
+                    <td>
+                        <a href="{% url 'actualizar_medico' medico.id %}" class="btn2">Actualizar</a>
+                        |
+                        <a href="{% url 'eliminar_medico' medico.id %}" class="btn2" onclick="return confirm('¿Estás seguro de eliminar este médico?')">Eliminar</a>
+                        </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Enlace para crear un nuevo paciente -->
+    <div class="imagen-texto">
+        <img src="{% static 'Images/+.svg' %}"|>
+        <a href="{% url 'insertar_medico' %}" src="{% static 'Images/+.svg' %}" class="txt">Crear nuevo médico</a>
+    </div>
+</div>
+{% endblock %}

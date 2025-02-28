@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Softhealth
+{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenido a Softhealth</h1>
+        <p class="lead"><br>Aquí podrás gestionar tus citas médicas, consultar tu historia clínica y mucho más. Si ya tienes cuenta, por favor <b>inicia sesión</b> para acceder a tus funcionalidades.</p>
+        <hr class="my-4">
+        <div class="row">
+            <div>
+                <img src="{% static 'Images/paciente.png' %}" alt="Icono Pacientes" class="icon">
+                <h3>Pacientes</h3>
+                <p>Accede a tu perfil, consulta tu historia clínica y pide una cita médica.</p>
+                <a class="btn" href="{% url 'login_paciente' %}" role="button">Iniciar sesión</a>
+            </div>
+            <div>
+                <img src="{% static 'Images/medico.png' %}" alt="Icono Médicos" class="icon">
+                <h3>Médicos</h3>
+                <p>Accede a tu perfil, visualiza historias clínicas y gestiona citas médicas.</p>
+                <a class="btn" href="{% url 'login_medico' %}" role="button">Iniciar sesión</a>
+            </div>
+            <div>
+                <img src="{% static 'Images/admin.png' %}" alt="Icono Aux. Administrativo" class="icon">
+                <h3>Aux. Administrativo</h3>
+                <p>Gestiona el sistema, agrega y administra médicos, pacientes o EPS.</p>
+                <a class="btn" href="{% url 'login_aux_administrativo' %}" role="button">Iniciar sesión</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

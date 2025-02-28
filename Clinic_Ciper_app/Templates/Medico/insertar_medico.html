@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Ingresar Médico
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <h2>Ingresar Médico</h2>
+
+        {% csrf_token %}
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <label for="nombre">Nombre + Apellido:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="tipo_documento">Tipo de Documento:</label>
+        <select id="tipo_documento" name="tipo_documento" required>
+            <option value="CC">Cédula de Ciudadanía (CC)</option>
+            <option value="TI">Tarjeta de Identidad (TI)</option>
+            <option value="CE">Cédula Extranjera (CE)</option>
+        </select>
+
+        <label for="documento">Documento:</label>
+        <input type="text" id="documento" name="documento" required>
+
+        <label for="especialidad">Especialidad:</label>
+        <input type="text" id="especialidad" name="especialidad" required>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+{% endblock %}

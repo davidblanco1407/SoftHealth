@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Ingresar Paciente
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <h2>Ingresar Paciente</h2>
+        {% csrf_token %}
+
+        <!-- Mostrar mensaje de éxito si existe -->
+        {% if mensaje_exito %}
+        <div class="alert alert-success">
+            {{ mensaje_exito }}
+        </div>
+        {% endif %}
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <label for="nombre">Nombre + Apellido:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="tipo_documento">Tipo de Documento:</label>
+        <select id="tipo_documento" name="tipo_documento" required>
+            <option value="CC">Cédula de Ciudadanía (CC)</option>
+            <option value="TI">Tarjeta de Identidad (TI)</option>
+            <option value="CE">Cédula Extranjera (CE)</option>
+        </select>
+
+        <label for="documento">Documento:</label>
+        <input type="text" id="documento" name="documento" required>
+
+        <label for="correo">Correo:</label>
+        <input type="email" id="correo" name="correo" required>
+
+        <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+        <input class="fecha_nacimiento" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+        <label for="eps">EPS:</label>
+        <select id="eps" name="eps" required>
+            {% for eps in eps_list %}
+                <option value="{{ eps.id }}">{{ eps.nombre_eps }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Guardar</button>
+    </form>
+
+{% endblock %}

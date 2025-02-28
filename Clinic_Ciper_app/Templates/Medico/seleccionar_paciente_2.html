@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Seleccionar Paciente
+{% endblock %}
+
+{% block content %}
+    <!-- Tabla para mostrar la lista de pacientes -->
+    <div class="select">
+        <h3>Seleccionar Paciente</h3>
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo Doc.</th>
+                    <th>Nro. Doc.</th>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if paciente %}
+                    {% for paciente in paciente %}
+                    <tr>
+                        <td>{{ paciente.tipo_documento }}</td>
+                        <td>{{ paciente.documento }}</td>
+                        <td>{{ paciente.nombre }}</td>
+                        <td>
+                            <a href="{% url 'listar_historia_clinica_2' paciente_id=paciente.id %}" class="btn">
+                                Ver Historia Clínica
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="3" class="text-center">
+                            No se encontraron pacientes.
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <h3></h3>
+    </div>
+{% endblock %}

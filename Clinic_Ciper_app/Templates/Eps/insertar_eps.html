@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Ingresar EPS
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <h2>Ingresar EPS</h2>
+        {% csrf_token %}
+        <label for="codigo">Código:</label>
+        <input type="number" id="codigo" name="codigo" required>
+
+        <label for="nombre_eps">Nombre EPS:</label>
+        <input type="text" id="nombre_eps" name="nombre_eps" required>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <label for="correo_electronico">Correo Electronico</label>
+        <input type="email" id="correo_electronico" name="correo_electronico" required>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+{% endblock %}

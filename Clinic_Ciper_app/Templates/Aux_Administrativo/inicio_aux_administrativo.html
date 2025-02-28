@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Inicio - Auxiliar Administrativo
+{% endblock %}
+
+{% block content %}
+
+    <!-- Bienvenida -->
+    <section class="welcome">
+        <h1>Bienvenido, {{ user.username }}</h1>
+        <p class="lead">Desde aquí podrás gestionar médicos, pacientes y EPS, así como realizar otras tareas administrativas.<br></p>
+    </section>
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div>
+            <img src="{% static 'Images/medico.png' %}" alt="Icono h_clinica" class="icon">
+            <h3>Médicos</h3>
+            <p>Gestión de médicos registrados...</p>
+            <a class="btn" href="{% url 'listar_medico' %}" role="button">Ver</a>
+            <a href="{% url 'insertar_medico' %}" class="btn" role="button">Registrar</a>
+        </div>
+        <div>
+            <img src="{% static 'Images/paciente.png' %}" alt="Icono calendar" class="icon">
+            <h3>Pacientes</h3>
+            <p>Gestión de pacientes registrados...</p>
+            <a href="{% url 'listar_paciente' %}" class="btn" role="button">Ver</a>
+            <a href="{% url 'insertar_paciente' %}" class="btn" role="button">Registrar</a>
+        </div>
+        <div>
+            <img src="{% static 'Images/admin.png' %}" alt="Icono calendar" class="icon">
+            <h3>Auxiliares</h3>
+            <p>Gestión de auxiliares registrados...</p>
+            <a href="{% url 'listar_auxiliares' %}" class="btn" role="button">Ver</a>
+            <a href="{% url 'insertar_auxiliar' %}" class="btn" role="button">Registrar</a>
+        </div>
+        <div>
+            <img src="{% static 'Images/eps.png' %}" alt="Icono calendar" class="icon">
+            <h3>EPS</h3>
+            <p>Gestión de EPS registrados...</p>
+            <a href="{% url 'listar_eps' %}" class="btn" role="button">Ver</a>
+            <a href="{% url 'insertar_eps' %}" class="btn" role="button">Registrar</a>
+        </div>
+    </div>
+
+{% endblock %}
+

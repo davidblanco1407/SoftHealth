@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar EPS
+{% endblock %}
+
+{% block content %}
+<div class="select">
+    <h3>Listar EPS</h3>
+
+    <!-- Tabla para mostrar eps_list -->
+    <table>
+        <thead>
+            <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Correo Electronico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for eps in eps_list %}
+            <tr>
+                <td>{{eps.codigo}}</td>
+                <td>{{eps.nombre_eps}}</td>
+                <td>{{eps.direccion}}</td>
+                <td>{{eps.telefono}}</td>
+                <td>{{eps.correo_electronico}}</td>
+                <td>
+                    <a href="{% url 'actualizar_eps' id=eps.id %}">Actualizar</a>
+                    |
+                    <a href="{% url 'eliminar_eps' eps.id %}" onclick="return confirm('¿Estás seguro de eliminar este médico?')">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Enlace para crear un nuevo paciente -->
+    <div class="imagen-texto">
+        <img src="{% static 'Images/+.svg' %}"|>
+        <a href="{% url 'insertar_eps' %}" src="{% static 'Images/+.svg' %}" class="txt">Crear nuevo...</a>
+    </div>
+</div>
+
+{% endblock %}

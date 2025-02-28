@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Actualizar Cita Médica
+{% endblock %}
+
+{% block content %}
+
+    <h1>Actualizar Cita Médica</h1>
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+        <h3>Mi Perfil</h3>
+        {% csrf_token %}
+        {{ formulario.as_p }}   
+        <button type="submit">Actualizar Cita Médica</button>
+    </form>
+
+{% endblock %}

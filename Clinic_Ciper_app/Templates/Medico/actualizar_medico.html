@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Actualizar Médico
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <h2>Actualizar Médico</h2>
+        {% csrf_token %}
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <label for="nombre">Nombre:</label>
+        <input tpe="text" id="nombre" name="nombre" value="{{ medico.nombre }}" readonly required><br><br>
+
+        <label for="tipo_documento">Tipo de Documento:</label>
+            <select id="tipo_documento" name="tipo_documento" required>
+            <option value="CC" {% if medico.tipo_documento == "CC" %}selected{% endif %}>CC</option>
+            <option value="TI" {% if medico.tipo_documento == "TI" %}selected{% endif %}>TI</option>
+            <option value="CE" {% if medico.tipo_documento == "CE" %}selected{% endif %}>CE</option>
+        </select><br><br>
+
+        <label for="documento">Documento:</label>
+        <input type="text" id="documento" name="documento" value="{{ medico.documento }}" required><br><br>
+
+        <label for="especialidad">Especialidad:</label>
+        <input type="text" id="especialidad" name="especialidad" value="{{ medico.especialidad }}" required><br><br>
+
+        <label for="password">Nueva contraseña:</label>
+        <input type="password" id="password" name="password" value="{{ medico.password }}" required><br><br>
+
+        <button type="submit">Actualizar</button>
+    </form>
+
+{% endblock %}

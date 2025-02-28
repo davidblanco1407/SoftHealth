@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Insertar Historia Clínica
+{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <h2>Insertar Historia Clínica para {{ paciente.nombre }}</h2>
+
+        {% csrf_token %}
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <label for="id_diagnostico">Diagnóstico:</label>
+        <input type="text" id="id_diagnostico" name="diagnostico" class="form-control">
+
+        <label for="id_tratamiento">Tratamiento:</label>
+        <textarea id="id_tratamiento" name="tratamiento" class="form-control"></textarea>
+
+        <label for="id_observaciones">Observaciones:</label>
+        <textarea id="id_observaciones" name="observaciones" class="form-control"></textarea>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock %}
+

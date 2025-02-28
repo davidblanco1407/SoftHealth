@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Inicio - Médico
+{% endblock %}
+
+{% block content %}
+
+    <!-- Bienvenida -->
+    <section class="welcome">
+        <h1>Bienvenido, {{ user.username }}.</h1>
+    </section>
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <!-- Historia Clínica y Citas Médicas -->
+    <div class="row">
+        <div>
+            <img src="{% static 'Images/user.svg' %}" alt="Icono calendar" class="icon">
+            <h3>Listar Pacientes</h3>
+            <p>Ver mis pacientes...</p>
+            <a href="{% url 'listar_paciente' %}" class="btn" role="button">Ingresar</a>
+        </div>
+        <div>
+            <img src="{% static 'Images/calendar.svg' %}" alt="Icono h_clinica" class="icon">
+            <h3>Cita médica</h3>
+            <p>Agendar citas médicas...</p>
+            <a class="btn" href="{% url 'insertar_cita_2' %}" role="button">Ingresar</a>
+        </div>
+        <div>
+            <img src="{% static 'Images/h_clinica.svg' %}" alt="Icono h_clinica" class="icon">
+            <h3>Historia Clínica</h3>
+            <p>Gestionar historias clínicas...</p>
+            <a class="btn" href="{% url 'seleccionar_paciente' %}" role="button">Crear</a>
+            <a class="btn" href="{% url 'seleccionar_paciente_2' %}" role="button">Ver</a>
+        </div>
+    </div>
+
+{% endblock %}

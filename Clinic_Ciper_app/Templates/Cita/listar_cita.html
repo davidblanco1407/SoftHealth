@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar Citas
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        <h2>Lista de Citas Médicas</h2>
+
+        <!-- Mostrar mensaje de error si existe -->
+        {% if mensaje_error %}
+        <div class="alert error">
+            {{ mensaje_error }}
+        </div>
+        {% endif %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Médico</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Motivo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if citas %}
+                    {% for cita in citas %}
+                        <tr>
+                            <td>{{ cita.paciente.nombre }}</td>
+                            <td>{{ cita.medico.nombre }}</td>
+                            <td>{{ cita.fecha }}</td>
+                            <td>{{ cita.hora }}</td>
+                            <td>{{ cita.motivo }}</td>
+                            <td>
+                                <a href="{% url 'eliminar_cita' cita.id %}">Eliminar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <p>No hay citas médicas registradas.</p>
+                {% endif %}
+            </tbody>
+        </table>
+    </form>
+
+{% endblock %}

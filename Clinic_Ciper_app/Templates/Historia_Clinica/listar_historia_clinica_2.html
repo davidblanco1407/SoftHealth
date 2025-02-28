@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Listar Historias Clínicas
+{% endblock %}
+
+{% block content %}
+
+    <!-- Mostrar mensaje de error si existe -->
+    {% if mensaje_error %}
+    <div class="alert error">
+        {{ mensaje_error }}
+    </div>
+    {% endif %}
+
+    <!-- Tabla con las historias clínicas -->
+    <div class="select">
+        <h3>Historias Clínicas de {{ user.username }}</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Diagnóstico</th>
+                    <th>Tratamiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if historias %}
+                    {% for historia in historias %}
+                    <tr>
+                        <td>{{ historia.fecha }}</td>
+                        <td>{{ historia.descripcion }}</td>
+                        <td>{{ historia.diagnostico }}</td>
+                        <td>{{ historia.tratamiento }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5">No hay historias clínicas para este paciente.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <h3></h3>
+    </div>
+
+{% endblock %}
